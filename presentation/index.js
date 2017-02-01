@@ -58,23 +58,38 @@ export default class Presentation extends React.Component {
             <Heading size={1} fit caps lineHeight={1} textColor="black">
               react.js
             </Heading>
-            <Heading size={1} fit caps>
-              A ReactJS Presentation Library
+            <Heading size={1} fit>
+              another js framework..?
             </Heading>
-            <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
-            </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+            {/*<Heading size={1} fit caps textColor="black">
+                Where You Can Write Your Decks In JSX
+              </Heading>
+              <Link href="https://github.com/FormidableLabs/spectacle">
+                <Text bold caps textColor="tertiary">View on Github</Text>
+              </Link>
+              <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>*/}
           </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
-            </Heading>
+          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?" bgColor="tertiary">
+            <Text textSize="3.5em" margin="20px 0 0" bold>👋</Text>
+            <Markdown>
+{`
+  * Gerrit Neven
+  * Digital Art & Technology @ Plymouth University
+  * Fullstack Developer/Creative Coder
+  * 🇳🇱🇳🇱🇳🇱 (don't like footbal though)
+  * Do like climbing!
+`}
+            </Markdown>
           </Slide>
+          <Slide bgColor="tertiary">
+            <BlockQuote>
+              <Quote textColor="primary">
+                A JavaScript library for building user interfaces
+              </Quote>
+              <Cite textColor="primary">Facebook</Cite>
+            </BlockQuote>
+          </Slide>
+
           <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
             <CodePane
               lang="jsx"

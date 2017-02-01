@@ -1,0 +1,14 @@
+<button id="toggle">on</button>
+<script>
+  $('#toggle').click(function () {
+    var text = $(this).text();
+
+    if (text == 'on') {
+      text = 'off';
+    } else if (text == 'off') {
+      text = 'on';
+    }
+    
+    $('#toggle').text(text);
+  });
+</script>
