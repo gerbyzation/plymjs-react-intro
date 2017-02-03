@@ -1,12 +1,15 @@
 // Import React
 import React from "react";
 
+import CodeSlide from 'spectacle-code-slide';
+
 // Import Spectacle Core tags
 import {
   Appear,
   BlockQuote,
   Cite,
   CodePane,
+  Code,
   Deck,
   Fill,
   Heading,
@@ -19,7 +22,8 @@ import {
   Quote,
   Slide,
   Spectacle,
-  Text
+  Text,
+  S
 } from "spectacle";
 
 // Import image preloader util
@@ -30,6 +34,8 @@ import createTheme from "spectacle/lib/themes/default";
 
 // Import custom component
 import Interactive from "../assets/interactive";
+import Toggle from "../assets/toggle-react";
+import Introduction from '../assets/react-name-func.js';
 
 // Require CSS
 require("normalize.css");
@@ -53,7 +59,7 @@ export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+        <Deck transition={["zoom", "slide"]} transitionDuration={500} progress='bar'>
           <Slide transition={["zoom"]} bgColor="primary">
             <Heading size={1} fit caps lineHeight={1} textColor="black">
               react.js
@@ -61,13 +67,6 @@ export default class Presentation extends React.Component {
             <Heading size={1} fit>
               another js framework..?
             </Heading>
-            {/*<Heading size={1} fit caps textColor="black">
-                Where You Can Write Your Decks In JSX
-              </Heading>
-              <Link href="https://github.com/FormidableLabs/spectacle">
-                <Text bold caps textColor="tertiary">View on Github</Text>
-              </Link>
-              <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>*/}
           </Slide>
           <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?" bgColor="tertiary">
             <Text textSize="3.5em" margin="20px 0 0" bold>👋</Text>
@@ -81,6 +80,10 @@ export default class Presentation extends React.Component {
 `}
             </Markdown>
           </Slide>
+          <Slide>
+            <Heading>What is React?</Heading>
+          </Slide>
+
           <Slide bgColor="tertiary">
             <BlockQuote>
               <Quote textColor="primary">
@@ -88,6 +91,182 @@ export default class Presentation extends React.Component {
               </Quote>
               <Cite textColor="primary">Facebook</Cite>
             </BlockQuote>
+          </Slide>
+
+          <Slide>
+            <Heading size={1}><S type='strikethrough'>MVC</S></Heading>
+            <Text margin={50}>Also not (just) the "V"</Text>
+          </Slide>
+
+          <Slide>
+            <Heading>React is:</Heading>
+            <List>
+              <ListItem>Learn once, write anywhere</ListItem>
+              <ListItem>Declarative</ListItem>
+              <ListItem>Component based</ListItem>
+            </List>
+          </Slide>
+
+          <Slide>
+            <Heading>Learn once, write anywhere</Heading>
+            <List>
+              <ListItem>React DOM</ListItem>
+              <ListItem>React Native</ListItem>
+            </List>
+            <Text style={{textAlign: 'left'}}>Others:</Text>
+            <List>
+              <ListItem>gl-react</ListItem>
+              <ListItem>React Canvas</ListItem>
+            </List>
+          </Slide>
+
+          <Slide>
+            <Heading>Declarative</Heading>
+            <Text>
+              Write <strong>what</strong> you want to happen,<br /> not <strong>how</strong> to make it happen
+            </Text>
+          </Slide>
+
+          <Slide>
+            <Heading style={{fontSize: '2em', marginBottom: '1em'}}>Unidirectional data flow</Heading>
+            <Image
+              src={require("../assets/data-flow-react.svg")}
+            />
+          </Slide>
+
+          <Slide notes='Declare what we want to see given a certain state.'>
+            <Heading>How do we tell it what we want?</Heading>
+            <Heading margin={20}>JSX!</Heading>
+          </Slide>
+
+          <CodeSlide
+            notes="Few gotcha's with JSX: classNames, JS expressions in brackets"
+            transition={[]}
+            lang='jsx'
+            code={require('raw!../assets/react-name.example')}
+            ranges={[
+              { loc: [0, 4] },
+              { loc: [4, 19] },
+              { loc: [20, 35] },
+              { loc: [26, 34] , title: `🔥🔥 Markup in JavaScript!?! 🔥🔥`},
+              { loc: [37, 41] }
+            ]}
+          />
+
+          <Slide transition={'slide'}>
+            <Introduction />
+            <CodePane
+              lang="html"
+              source={`<div>
+  <h1>Hi!</h1>
+  <p>Hi! My name is Gerben, or Gerben, or Garreth, or Gerby, or Gerb, or G.</p>
+</div>`}
+            />
+          </Slide>
+
+          <Slide>
+            <Heading>How do does it make the <em>'what'</em> happen?</Heading>
+          </Slide>
+
+          <Slide notes="<ul><li>DOM operations are expensive</li><li>lots of optimisation</li></ul>">
+            <Heading>Virtual DOM</Heading>
+            <Text>Taking care of the 'how'</Text>
+            <List>
+              <Appear><ListItem>Computes new DOM tree in JS</ListItem></Appear>
+              <Appear><ListItem>Diffs with current tree</ListItem></Appear>
+              <Appear><ListItem>Updates changed parts of tree in DOM</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide bgColor="tertiary" notes="Performance by diffing + optimisation (DOM ops are expensive bit)">
+            <Image
+              src={require('../assets/vdom-diagram.svg')}
+              width={1000}
+            />
+          </Slide>
+
+          <Slide>
+            <Heading>Components</Heading>
+            <Text margin={50}>Reusable UI elements</Text>
+            <Heading margin={0}><Code margin={0}>React.Component</Code></Heading>
+          </Slide>
+
+          <Slide transition="slide">
+            <Heading>Component</Heading>
+            <CodePane
+              lang="jsx"
+              source={require('raw!../assets/react-name.example')}
+            />
+          </Slide>
+
+          <Slide transition="slide" notes="So testable!">
+            <Heading>Functional Component</Heading>
+            <CodePane
+              lang="jsx"
+              source={require('raw!../assets/react-name-func.example')}
+            />
+          </Slide>
+
+          <Slide notes="setState is batched">
+            <Markdown>{`
+# State & Props
+
+* State is located in a specific class-based component
+* Updated with \`this.setState()\`
+* Treat state as immutable
+* Props are read-only
+`}
+            </Markdown>
+          </Slide>
+
+          <Slide>
+            <CodePane
+              lang="jsx"
+              source={require("raw!../assets/toggle-react.example")}
+            />
+          </Slide>
+
+          <Slide>
+            <Toggle />
+          </Slide>
+
+          <Slide>
+            <Heading>Component Lifecycle</Heading>
+            <Markdown>
+            {`
+* **\`constructor()\`**
+* \`componentWillMount()\`
+* **\`render()\`**
+* \`componentDidMount()\`
+* \`componentWillReceiveProps()\`
+* **\`shouldComponentUpdate()\`**
+* \`componentWillUpdate()\`
+* \`componentDidUpdate()\`
+* \`componentWillUnmount()\`
+`}
+            </Markdown>
+          </Slide>
+
+          <Slide>
+            <Markdown>{`# <Demo>`}</Markdown>
+          </Slide>
+
+          <Slide>
+            <Heading size={2}>So what do we use for data management?</Heading>
+          </Slide>
+
+          <Slide>
+            <Heading>How do I get started?</Heading>
+          </Slide>
+
+
+{/*
+          <Slide>
+            <Heading>Component based</Heading>
+          </Slide>
+
+          <Slide>
+            <Heading>Learn once, write anywhere</Heading>
           </Slide>
 
           <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
@@ -179,7 +358,7 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
               Made with love in Seattle by
             </Heading>
             <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
-          </Slide>
+          </Slide>*/}
         </Deck>
       </Spectacle>
     );
